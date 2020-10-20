@@ -16,6 +16,8 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.channels.FileChannel;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
 import java.util.logging.Logger;
 
 public class HttpFileUploadServerHandler extends SimpleChannelInboundHandler<HttpObject> {
@@ -34,7 +36,7 @@ public class HttpFileUploadServerHandler extends SimpleChannelInboundHandler<Htt
     // 像他妈做梦一样。
     private static final HttpDataFactory factory =
             // Disk if size exceed
-            new DefaultHttpDataFactory(true);
+            new DefaultHttpDataFactory(SystemConstant.FILE_USED_MEMORY_SIZE);
 
     private HttpPostRequestDecoder decoder;
 
@@ -150,7 +152,7 @@ public class HttpFileUploadServerHandler extends SimpleChannelInboundHandler<Htt
                         String originalName = fileUpload.getFilename();
                         newFileName = newFileName + originalName.substring(originalName.lastIndexOf("."));
                     }
-                    final File file = new File(dire + File.pathSeparator + newFileName);
+                    final File file = new File(dire + "/" + newFileName);
                     System.out.println(file.getAbsolutePath());
                     FileChannel inputChannel = new FileInputStream(fileUpload.getFile()).getChannel();
                     FileChannel outputChannel = new FileOutputStream(file).getChannel();

@@ -6,11 +6,13 @@ package io.file.http.system;
  */
 public class SystemConstant {
 
-    public static final String FILE_UPLOAD_PATH = "/file/fast/upload";
+    public static final String FILE_UPLOAD_PATH = "/file/rapid/upload";
 
-    public static final String FILE_DOWNLOAD_PATH = "/file/fast/download";
+    public static final String FILE_DOWNLOAD_PATH = "/file/rapid/download";
 
     public static int CHUNK_SIZE = 1024*10;
+
+    public static int FILE_USED_MEMORY_SIZE = 1024*10;
 
     public static String REDIS_HOST = "127.0.0.1";
 
